@@ -1,15 +1,23 @@
 package src;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import src.PenShapes.Circle;
+import src.PenShapes.InterfaceShape;
+import src.PenShapes.Rectangle;
+import src.PenShapes.Triangle;
+import src.PenShapes.Wheel;
 
 public class InterfaceDrawingFrame extends Main{
     private JButton dC,dW,dR,dT;
+    private JTextField x,y,w,h;
     private JPanel panel;
-    private byte shape=0;
+    private InterfaceShape shape;
     public InterfaceDrawingFrame()
     {
         dC=new JButton();
@@ -17,7 +25,7 @@ public class InterfaceDrawingFrame extends Main{
         dC.setText("Circle");
         dC.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                shape=1;
+                shape=new Circle();
             }
         });
         dC.setVisible(false);
@@ -26,7 +34,7 @@ public class InterfaceDrawingFrame extends Main{
         dW.setText("Wheel");
         dW.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                shape=2;
+                shape=new Wheel();
             }
         });
         dW.setVisible(false);
@@ -35,7 +43,7 @@ public class InterfaceDrawingFrame extends Main{
         dR.setText("Rectangle");
         dR.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                shape=3;
+                shape=new Rectangle();
             }
         });
         dR.setVisible(false);
@@ -44,7 +52,7 @@ public class InterfaceDrawingFrame extends Main{
         dT.setText("Triangle");
         dT.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                shape=4;
+                shape=new Triangle();
             }
         });
         dT.setVisible(false);
@@ -54,22 +62,12 @@ public class InterfaceDrawingFrame extends Main{
             {
                 super.paintComponent(g);
                 g.clearRect(0,0,panel.getWidth(),panel.getHeight());
-                if(shape==1)
+                g.setColor(Color.BLACK);
+                try
                 {
-                    
+                    shape.draw(g);
                 }
-                else if(shape==2)
-                {
-                    
-                }
-                else if(shape==3)
-                {
-                    
-                }
-                else if(shape==4)
-                {
-                    
-                }
+                catch(NullPointerException ex){}
                 repaint();
             }
         };
