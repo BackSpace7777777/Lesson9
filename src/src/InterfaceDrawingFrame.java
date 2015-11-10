@@ -34,7 +34,7 @@ public class InterfaceDrawingFrame extends Main{
         dW.setText("Wheel");
         dW.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                shape=new Wheel();
+                shape=new Wheel(5,5,100,6);
             }
         });
         dW.setVisible(false);

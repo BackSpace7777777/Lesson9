@@ -23,4 +23,8 @@ public class Circle implements InterfaceShape{
     public int getY() {
         return y;
     }
+    public int getRadius()
+    {
+        return radius;
+    }
 }
