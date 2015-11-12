@@ -27,4 +27,14 @@ public class Circle implements InterfaceShape{
     {
         return radius;
     }
+    public double getArea() {
+        return (Math.PI*(radius*radius))/2;
+    }
+    public void setX(int x) {
+        this.x=x;
+    }
+    
+    public void setY(int y) {
+        this.y=y;
+    }
 }

@@ -3,20 +3,35 @@ package src.PenShapes;
 import java.awt.Graphics;
 
 public class Rectangle implements InterfaceShape{
-
-    @Override
+    private int x,y,w,h;
+    public Rectangle()
+    {
+        this(5,5,100,25);
+    }
+    public Rectangle(int x,int y,int w,int h)
+    {
+        this.x=x;
+        this.y=y;
+        this.w=w;
+        this.h=h;
+    }
     public void draw(Graphics g) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        g.drawRect(x,y,w,h);
     }
-
-    @Override
     public int getX() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return y;
     }
-
-    @Override
     public int getY() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return x;
+    }
+    public double getArea() {
+        return w*h;
+    }
+    public void setX(int x) {
+        this.x=x;
+    }
+    public void setY(int y) {
+        this.y=y;
     }
     
 }

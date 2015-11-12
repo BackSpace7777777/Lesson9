@@ -22,7 +22,7 @@ public class Wheel extends Circle implements InterfaceShape{
         for(int i=0;i<spokes;i++)
         {
             //g.drawLine(super.getX()+super.getRadius()/2,super.getY()+super.getRadius()/2,super.getX()+super.getRadius()/2,super.getY());
-            g.drawLine(super.getX()+super.getRadius()/2,super.getY()+super.getRadius()/2,super.getX()+super.getRadius()/2+(i*degrees),super.getY()+super.getRadius()/2+(i*degrees));
+            
         }
     }
     public int getX() {
