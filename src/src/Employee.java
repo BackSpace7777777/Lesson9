@@ -1,9 +1,15 @@
 package src;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
@@ -12,8 +18,24 @@ public class Employee extends Main{
     private JLabel ENL,ERL,EHL;
     private JRadioButton ft,pt;
     private JButton add,exit;
+    private JPanel panel;
+    private int mX,mY;
+    private boolean mouseDown=false;
     public Employee()
     {
+        add=new JButton();
+        add.setBounds(5,230,150,30);
+        add.setText("Add");
+        add.setVisible(false);
+        exit=new JButton();
+        exit.setBounds(160,230,150,30);
+        exit.setText("Exit");
+        exit.setVisible(false);
+        exit.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
         eName=new JTextField();
         eName.setBounds(160,40,150,30);
         eName.setVisible(false);
@@ -56,6 +78,41 @@ public class Employee extends Main{
                 pt.setSelected(true);
             }
         });
+        panel=new JPanel()
+        {
+            public void paintComponent(Graphics g)
+            {
+                super.paintComponent(g);
+                g.clearRect(0,0,panel.getWidth(),panel.getHeight());
+                g.setColor(new Color(100,100,0,100));
+                g.fillRect(0,0,panel.getWidth(),panel.getHeight());
+                for(int i=1;i<200/20;i+=2)
+                {
+                    g.setColor(new Color(255,255,255,200));
+                    g.fillRect(0,i*20,panel.getWidth(),20);
+                }
+                repaint();
+            }
+        };
+        panel.addMouseMotionListener(new MouseMotionAdapter() {
+            public void mouseMoved(MouseEvent e) {
+                mX=e.getX();
+                mY=e.getY();
+            }
+        });
+        panel.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                mouseDown=true;
+            }
+            public void mouseReleased(MouseEvent e) {
+                mouseDown=false;
+            }
+        });
+        panel.setBounds(5,265,305,200);
+        panel.setVisible(false);
+        frame.add(panel);
+        frame.add(exit);
+        frame.add(add);
         frame.add(pt);
         frame.add(ft);
         frame.add(EHL);
@@ -77,5 +134,8 @@ public class Employee extends Main{
         EHL.setVisible(tf);
         ft.setVisible(tf);
         pt.setVisible(tf);
+        add.setVisible(tf);
+        exit.setVisible(tf);
+        panel.setVisible(tf);
     }
 }

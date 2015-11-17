@@ -1,8 +1,6 @@
 package src.PenShapes;
 
 import java.awt.Graphics;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Wheel extends Circle implements InterfaceShape{
     private int spokes;

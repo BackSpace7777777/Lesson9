@@ -29,14 +29,10 @@ public class Triangle implements InterfaceShape{
     public double getArea() {
         return ((b*h)/2);
     }
-
-    @Override
     public void setX(int x) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.x=x;
     }
-
-    @Override
     public void setY(int y) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.y=y;
     }
 }
