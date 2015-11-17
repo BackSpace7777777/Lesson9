@@ -1,5 +1,8 @@
 package src;
 
+import TurtleGraphics.Pen;
+import TurtleGraphics.SketchPadWindow;
+import TurtleGraphics.StandardPen;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -34,7 +37,10 @@ public class InterfaceDrawingFrame extends Main{
         dW.setText("Wheel");
         dW.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                shape=new Wheel(5,5,100,6);
+                SketchPadWindow w=new SketchPadWindow(420,420);
+                Pen p=new StandardPen(w);
+                Wheel wh=new Wheel();
+                wh.draw(p);
             }
         });
         dW.setVisible(false);

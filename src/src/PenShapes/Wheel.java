@@ -1,5 +1,6 @@
 package src.PenShapes;
 
+import TurtleGraphics.Pen;
 import java.awt.Graphics;
 
 public class Wheel extends Circle implements InterfaceShape{
@@ -15,13 +16,8 @@ public class Wheel extends Circle implements InterfaceShape{
         this.spokes=spokes;
         degrees=360/spokes;
     }
-    public void draw(Graphics g) {
-        super.draw(g);
-        for(int i=0;i<spokes;i++)
-        {
-            //g.drawLine(super.getX()+super.getRadius()/2,super.getY()+super.getRadius()/2,super.getX()+super.getRadius()/2,super.getY());
-            
-        }
+    public void draw(Pen p) {
+        
     }
     public int getX() {
         return super.getX();
