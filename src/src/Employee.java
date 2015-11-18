@@ -24,11 +24,11 @@ public class Employee extends Main{
     public Employee()
     {
         add=new JButton();
-        add.setBounds(5,230,150,30);
+        add.setBounds(5,190,150,30);
         add.setText("Add");
         add.setVisible(false);
         exit=new JButton();
-        exit.setBounds(160,230,150,30);
+        exit.setBounds(160,190,150,30);
         exit.setText("Exit");
         exit.setVisible(false);
         exit.addActionListener(new ActionListener() {
@@ -59,7 +59,7 @@ public class Employee extends Main{
         EHL.setVisible(false);
         ft=new JRadioButton();
         ft.setText("Full Time");
-        ft.setBounds(5+50,200,100,25);
+        ft.setBounds(5+50,160,100,25);
         ft.setVisible(false);
         ft.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -70,7 +70,7 @@ public class Employee extends Main{
         ft.setSelected(true);
         pt=new JRadioButton();
         pt.setText("Part Time");
-        pt.setBounds(105+50,200,100,25);
+        pt.setBounds(105+50,160,100,25);
         pt.setVisible(false);
         pt.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -125,7 +125,7 @@ public class Employee extends Main{
     public void visible(boolean tf)
     {
         frame.setTitle("Lesson 9 - Employee");
-        frame.setSize(320,500);
+        frame.setSize(320,550);
         eName.setVisible(tf);
         eRate.setVisible(tf);
         eHours.setVisible(tf);

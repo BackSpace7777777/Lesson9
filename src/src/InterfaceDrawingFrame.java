@@ -21,14 +21,20 @@ public class InterfaceDrawingFrame extends Main{
     private JTextField x,y,w,h;
     private JPanel panel;
     private InterfaceShape shape;
+    private SketchPadWindow wi;
+    private Pen p;
     public InterfaceDrawingFrame()
     {
+        wi=new SketchPadWindow(420,420);
+        p=new StandardPen(wi);
+        wi.setVisible(false);
         dC=new JButton();
         dC.setBounds(5,40,150,30);
         dC.setText("Circle");
         dC.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 shape=new Circle();
+                wi.setVisible(false);
             }
         });
         dC.setVisible(false);
@@ -37,9 +43,10 @@ public class InterfaceDrawingFrame extends Main{
         dW.setText("Wheel");
         dW.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                SketchPadWindow w=new SketchPadWindow(420,420);
-                Pen p=new StandardPen(w);
+                shape=null;
+                wi.setVisible(true);
                 Wheel wh=new Wheel();
+                p.setColor(Color.GREEN);
                 wh.draw(p);
             }
         });
@@ -50,6 +57,7 @@ public class InterfaceDrawingFrame extends Main{
         dR.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 shape=new Rectangle();
+                wi.setVisible(false);
             }
         });
         dR.setVisible(false);
@@ -59,6 +67,7 @@ public class InterfaceDrawingFrame extends Main{
         dT.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 shape=new Triangle();
+                wi.setVisible(false);
             }
         });
         dT.setVisible(false);
