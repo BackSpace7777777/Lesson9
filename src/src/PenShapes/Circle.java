@@ -3,7 +3,7 @@ package src.PenShapes;
 import java.awt.Graphics;
 
 public class Circle implements InterfaceShape{
-    private int x,y,radius;
+    protected int x,y,radius;
     public Circle()
     {
         this(5,5,10);

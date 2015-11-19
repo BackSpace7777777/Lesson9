@@ -6,27 +6,53 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.event.MouseMotionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import src.EmployeeObjects.Employe;
 
 public class Employee extends Main{
     private JTextField eName,eRate,eHours;
     private JLabel ENL,ERL,EHL;
     private JRadioButton ft,pt;
-    private JButton add,exit;
+    private JButton add,exit,left,right;
     private JPanel panel;
     private int mX,mY;
+    private int eOffsetTable=1,eOffset=0;
+    private Employe es[]=new Employe[1];
     private boolean mouseDown=false;
     public Employee()
     {
+        es[0]=null;
+        left=new JButton();
+        left.setBounds(5,225,50,30);
+        left.setText("<");
+        left.setVisible(false);
+        right=new JButton();
+        right.setBounds(320-50-10,225,50,30);
+        right.setText(">");
+        right.setVisible(false);
         add=new JButton();
         add.setBounds(5,190,150,30);
         add.setText("Add");
         add.setVisible(false);
+        add.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if(es[eOffset]==null)
+                {
+                    
+                }
+                else
+                {
+                    
+                }
+            }
+        });
         exit=new JButton();
         exit.setBounds(160,190,150,30);
         exit.setText("Exit");
@@ -86,10 +112,23 @@ public class Employee extends Main{
                 g.clearRect(0,0,panel.getWidth(),panel.getHeight());
                 g.setColor(new Color(100,100,0,100));
                 g.fillRect(0,0,panel.getWidth(),panel.getHeight());
-                for(int i=1;i<200/20;i+=2)
+                boolean switchB=false;
+                for(int i=0;i<panel.getHeight()/20;i++)
                 {
-                    g.setColor(new Color(255,255,255,200));
-                    g.fillRect(0,i*20,panel.getWidth(),20);
+                    if(switchB)
+                    {
+                        if(mY<(i*20) && mY>((i*20)-20))g.setColor(Color.GREEN);
+                        else g.setColor(new Color(255,255,255,200));
+                        g.fillRect(0,i*20,panel.getWidth(),20);
+                        switchB=false;
+                    }
+                    else
+                    {
+                        if(mY<(i*20) && mY>((i*20)-20))g.setColor(Color.GREEN);
+                        else g.setColor(new Color(100,100,100,100));
+                        g.fillRect(0,i*20,panel.getWidth(),20);
+                        switchB=true;
+                    }
                 }
                 repaint();
             }
@@ -107,9 +146,15 @@ public class Employee extends Main{
             public void mouseReleased(MouseEvent e) {
                 mouseDown=false;
             }
+            public void mouseExited(MouseEvent e){
+                mX=-100;
+                mY=-100;
+            }
         });
         panel.setBounds(5,265,305,200);
         panel.setVisible(false);
+        frame.add(right);
+        frame.add(left);
         frame.add(panel);
         frame.add(exit);
         frame.add(add);
@@ -121,6 +166,13 @@ public class Employee extends Main{
         frame.add(eHours);
         frame.add(eRate);
         frame.add(eName);
+    }
+    private void addToEmploye()
+    {
+        Employe temp[]=new Employe[es.length+1];
+        for(int i=0;i<es.length;i++)temp[i]=es[i];
+        es=new Employe[temp.length];
+        for(int i=0;i<temp.length;i++)es[i]=temp[i];
     }
     public void visible(boolean tf)
     {
@@ -137,5 +189,7 @@ public class Employee extends Main{
         add.setVisible(tf);
         exit.setVisible(tf);
         panel.setVisible(tf);
+        left.setVisible(tf);
+        right.setVisible(tf);
     }
 }

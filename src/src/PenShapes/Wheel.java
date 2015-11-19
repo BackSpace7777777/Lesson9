@@ -8,7 +8,7 @@ public class Wheel extends Circle implements InterfaceShape{
     private double degrees;
     public Wheel()
     {
-        this(5,5,50,3);
+        this(5,5,50,5);
     }
     public Wheel(int x,int y,int r, int spokes)
     {
@@ -28,13 +28,23 @@ public class Wheel extends Circle implements InterfaceShape{
             p.up();
             p.move(super.getX(),super.getY());
         }
+        p.up();
+        p.move(x+5,y+radius);
+        p.setDirection(180);
+        p.down();
+        double circum=radius/3.141592653589793;
+        for(int i=0;i<500;i++)
+        {
+            p.move(circum/3.14);
+            p.turn(5.5);
+        }
         System.out.println("Drew Wheel");
     }
     public int getX() {
-        return super.getX();
+        return x;
     }
     public int getY() {
-        return super.getY();
+        return y;
     }
     
 }

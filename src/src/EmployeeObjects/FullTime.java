@@ -1,36 +1,22 @@
 package src.EmployeeObjects;
-public class FullTime implements Employe{
-    private String fn="",ln="";
+public class FullTime extends Employe{
+    private String name;
     private double hours,payRate;
     public FullTime(String name,double hours,double payRate)
     {
         this.hours=hours;
         this.payRate=payRate;
-        try
-        {
-            String[] temp=name.split(" ");
-            fn=temp[0];
-            ln=temp[1];
-        }
-        catch(Exception ex)
-        {
-            System.out.println(ex);
-        }
+        this.name=name;
     }
+    
     public double getPay() {
         return payRate;
     }
     public double getHours() {
         return hours;
     }
-    public String getFirstName() {
-        return fn;
-    }
-    public String getLastName() {
-        return ln;
-    }
     public String getName() {
-        return fn + " " + ln;
+        return name;
     }
     public double getMoney() {
         double temp=payRate*hours;
