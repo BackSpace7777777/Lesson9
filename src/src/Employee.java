@@ -20,23 +20,15 @@ public class Employee extends Main{
     private JTextField eName,eRate,eHours;
     private JLabel ENL,ERL,EHL;
     private JRadioButton ft,pt;
-    private JButton add,exit,left,right;
+    private JButton add,exit;
     private JPanel panel;
     private int mX,mY;
-    private int eOffsetTable=1,eOffset=0;
-    private Employe es[]=new Employe[1];
+    private int eOffset=0;
+    private Employe es[]=new Employe[10];
     private boolean mouseDown=false;
     public Employee()
     {
-        es[0]=null;
-        left=new JButton();
-        left.setBounds(5,225,50,30);
-        left.setText("<");
-        left.setVisible(false);
-        right=new JButton();
-        right.setBounds(320-50-10,225,50,30);
-        right.setText(">");
-        right.setVisible(false);
+        for(int i=0;i<es.length;i++)es[i]=null;
         add=new JButton();
         add.setBounds(5,190,150,30);
         add.setText("Add");
@@ -117,17 +109,36 @@ public class Employee extends Main{
                 {
                     if(switchB)
                     {
-                        if(mY<(i*20) && mY>((i*20)-20))g.setColor(Color.GREEN);
+                        if(mY<(i*20) && mY>((i*20)-20) && mouseDown)
+                        {
+                            g.setColor(Color.GRAY);
+                            eOffset=i;
+                        }
+                        else if(mY<(i*20) && mY>((i*20)-20))g.setColor(Color.GREEN);
                         else g.setColor(new Color(255,255,255,200));
                         g.fillRect(0,i*20,panel.getWidth(),20);
                         switchB=false;
                     }
                     else
                     {
-                        if(mY<(i*20) && mY>((i*20)-20))g.setColor(Color.GREEN);
+                        
+                        if(mY<(i*20) && mY>((i*20)-20) && mouseDown)
+                        {
+                            g.setColor(Color.GRAY);
+                            eOffset=i;
+                        }
+                        else if(mY<(i*20) && mY>((i*20)-20))g.setColor(Color.GREEN);
                         else g.setColor(new Color(100,100,100,100));
                         g.fillRect(0,i*20,panel.getWidth(),20);
                         switchB=true;
+                    }
+                    try
+                    {
+                        
+                    }
+                    catch(NullPointerException ex)
+                    {
+                        
                     }
                 }
                 repaint();
@@ -135,12 +146,13 @@ public class Employee extends Main{
         };
         panel.addMouseMotionListener(new MouseMotionAdapter() {
             public void mouseMoved(MouseEvent e) {
-                mX=e.getX();
-                mY=e.getY();
+                mX=e.getX()-20;
+                mY=e.getY()-20;
             }
         });
         panel.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
+                if(mX!=-100&&mY!=-100)
                 mouseDown=true;
             }
             public void mouseReleased(MouseEvent e) {
@@ -153,8 +165,6 @@ public class Employee extends Main{
         });
         panel.setBounds(5,265,305,200);
         panel.setVisible(false);
-        frame.add(right);
-        frame.add(left);
         frame.add(panel);
         frame.add(exit);
         frame.add(add);
@@ -166,13 +176,6 @@ public class Employee extends Main{
         frame.add(eHours);
         frame.add(eRate);
         frame.add(eName);
-    }
-    private void addToEmploye()
-    {
-        Employe temp[]=new Employe[es.length+1];
-        for(int i=0;i<es.length;i++)temp[i]=es[i];
-        es=new Employe[temp.length];
-        for(int i=0;i<temp.length;i++)es[i]=temp[i];
     }
     public void visible(boolean tf)
     {
@@ -189,7 +192,5 @@ public class Employee extends Main{
         add.setVisible(tf);
         exit.setVisible(tf);
         panel.setVisible(tf);
-        left.setVisible(tf);
-        right.setVisible(tf);
     }
 }

@@ -1,16 +1,13 @@
 package src.EmployeeObjects;
 public class FullTime extends Employe{
-    private String name;
-    private double hours,payRate;
     public FullTime(String name,double hours,double payRate)
     {
-        this.hours=hours;
-        this.payRate=payRate;
-        this.name=name;
+        super.name=name;
+        super.hours=hours;
+        super.rate=payRate;
     }
-    
     public double getPay() {
-        return payRate;
+        return rate;
     }
     public double getHours() {
         return hours;
@@ -18,12 +15,23 @@ public class FullTime extends Employe{
     public String getName() {
         return name;
     }
-    public double getMoney() {
-        double temp=payRate*hours;
-        temp*=100;
-        temp=Math.round(temp);
-        temp/=100;
+    public double getActualPay() {
+        double temp=0;
+        if(hours>40)
+        {
+            temp=40*rate;
+            temp+=(hours-40)*(rate*2);
+            temp*=100;
+            temp=Math.round(temp);
+            temp/=100;
+        }
+        else
+        {
+            temp=rate*hours;
+            temp*=100;
+            temp=Math.round(temp);
+            temp/=100;
+        }
         return temp;
     }
-    
 }
