@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import src.EmployeeObjects.Employe;
+import src.EmployeeObjects.FullTime;
+import src.EmployeeObjects.PartTime;
 
 public class Employee extends Main{
     private JTextField eName,eRate,eHours;
@@ -37,11 +39,22 @@ public class Employee extends Main{
             public void actionPerformed(ActionEvent e) {
                 if(es[eOffset]==null)
                 {
-                    
+                    if(ft.isSelected())
+                    {
+                        if(checkInputs())es[eOffset]=new FullTime(eName.getText(),Double.parseDouble(eHours.getText()),Double.parseDouble(eRate.getText()));
+                    }
+                    else
+                    {
+                        if(checkInputs())es[eOffset]=new PartTime(eName.getText(),Double.parseDouble(eHours.getText()),Double.parseDouble(eRate.getText()));
+                    }
+                    if(eOffset<=8)
+                    eOffset++;
+                    else
+                    eOffset=0;
                 }
                 else
                 {
-                    
+                    es[eOffset]
                 }
             }
         });
@@ -117,6 +130,12 @@ public class Employee extends Main{
                         else if(mY<(i*20) && mY>((i*20)-20))g.setColor(Color.GREEN);
                         else g.setColor(new Color(255,255,255,200));
                         g.fillRect(0,i*20,panel.getWidth(),20);
+                        g.setColor(Color.BLACK);
+                        try
+                        {
+                            g.drawString(es[i].getName(),5,i*20+15);
+                        }
+                        catch(NullPointerException ex){}
                         switchB=false;
                     }
                     else
@@ -130,16 +149,15 @@ public class Employee extends Main{
                         else if(mY<(i*20) && mY>((i*20)-20))g.setColor(Color.GREEN);
                         else g.setColor(new Color(100,100,100,100));
                         g.fillRect(0,i*20,panel.getWidth(),20);
+                        g.setColor(Color.BLACK);
+                        try
+                        {
+                            g.drawString(es[i].getName(),5,i*20+15);
+                        }
+                        catch(NullPointerException ex){}
                         switchB=true;
                     }
-                    try
-                    {
-                        
-                    }
-                    catch(NullPointerException ex)
-                    {
-                        
-                    }
+                    System.out.println(eOffset);
                 }
                 repaint();
             }
@@ -176,6 +194,14 @@ public class Employee extends Main{
         frame.add(eHours);
         frame.add(eRate);
         frame.add(eName);
+    }
+    private boolean checkInputs()
+    {
+        boolean out=true;
+        if(eName.getText()=="")out=false;
+        if(Double.parseDouble(eRate.getText())>30.50 || Double.parseDouble(eRate.getText())<6.75)out=false;
+        if(Double.parseDouble(eHours.getText())>60 || Double.parseDouble(eHours.getText())<1)out=false;
+        return out;
     }
     public void visible(boolean tf)
     {
