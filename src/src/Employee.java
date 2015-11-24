@@ -54,7 +54,16 @@ public class Employee extends Main{
                 }
                 else
                 {
-                    es[eOffset]
+                    try
+                    {
+                        es[eOffset].setName(eName.getText());
+                        es[eOffset].setHours(Double.parseDouble(eHours.getText()));
+                        es[eOffset].setRate(Double.parseDouble(eRate.getText()));
+                    }   
+                    catch(Exception ex)
+                    {
+                        
+                    }
                 }
             }
         });
@@ -134,6 +143,7 @@ public class Employee extends Main{
                         try
                         {
                             g.drawString(es[i].getName(),5,i*20+15);
+                            g.drawString(es[i].getActualPay());
                         }
                         catch(NullPointerException ex){}
                         switchB=false;

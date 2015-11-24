@@ -16,15 +16,27 @@ abstract public class Employe {
 	public String getHoursRules() {
 		return "between 1 and 60, inclusive";
 	}
-	public boolean setName(String nm) {
-		if (nm.equals(""))
-			return false;
-		else{
-			name=nm;
-			return true;
-		}
+	public void setName(String nm) {
+		name=nm;
 	}
 	public String getName() {
 		return name;
-	}	
+	}
+        public void setHours(double h)
+        {
+            hours=h;
+        }
+        public void setRate(double r)
+        {
+            rate=r;
+        }
+        public double getHours()
+        {
+            return hours;
+        }
+        public double getRate()
+        {
+            return rate;
+        }
+        
 }
