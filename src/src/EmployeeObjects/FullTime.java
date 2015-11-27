@@ -6,7 +6,7 @@ public class FullTime extends Employe{
         super.hours=hours;
         super.rate=payRate;
     }
-    public double getActualPay() 
+    public double getPay() 
     {
         double temp=0;
         if(hours>40)

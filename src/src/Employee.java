@@ -143,7 +143,7 @@ public class Employee extends Main{
                         try
                         {
                             g.drawString(es[i].getName(),5,i*20+15);
-                            g.drawString(es[i].getActualPay());
+                            g.drawString(es[i].getPay());
                         }
                         catch(NullPointerException ex){}
                         switchB=false;
