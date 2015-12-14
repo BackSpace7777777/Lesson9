@@ -5,6 +5,7 @@ public class FullTime extends Employe{
         super.name=name;
         super.hours=hours;
         super.rate=payRate;
+        super.ft=true;
     }
     public double getActualPay() 
     {

@@ -143,7 +143,10 @@ public class Employee extends Main{
                         try
                         {
                             g.drawString(es[i].getName(),5,i*20+15);
-                            g.drawString(""+((FullTime)es[i].getActualPay()),50,i*20+15);
+                            if(es[i].getHours()>40 && es[i].getFT())
+                                g.drawString(""+((es[i].getHours()-40)*(es[i].getRate()*2))+40*es[i].getHours(),50,i*20+15);
+                            else
+                                g.drawString(""+(es[i].getHours()*es[i].getRate()),50,i*20+15);
                         }
                         catch(NullPointerException ex){}
                         switchB=false;

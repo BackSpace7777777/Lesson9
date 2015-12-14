@@ -5,6 +5,7 @@ public class PartTime extends Employe{
         super.name=name;
         super.hours=hours;
         super.rate=payRate;
+        super.ft=false;
     }
     public double getActualPay() {
         double temp=rate*hours;
